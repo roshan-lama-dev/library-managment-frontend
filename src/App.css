@@ -101,3 +101,18 @@ ul {
     display: none;
   }
 }
+
+.add-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-top,
+.add-bottom {
+  padding: 2rem;
+  margin: 20px;
+  box-shadow: 2px 4px 10px 1px rgba(204, 204, 204, 0.384);
+}
+.img > img {
+  background-size: cover;
+}

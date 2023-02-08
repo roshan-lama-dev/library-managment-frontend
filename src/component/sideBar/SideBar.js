@@ -32,7 +32,7 @@ export const SideBar = ({ userInfo }) => {
           {userInfo?.role === "teacher" ? (
             <>
               <li>
-                <Link to="/" className="link">
+                <Link to="/addbooks" className="link">
                   <i className="fa-solid fa-book"></i>
                   <span>Add Books</span>
                 </Link>

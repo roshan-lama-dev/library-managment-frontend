@@ -20,7 +20,7 @@ export const DashBoardLayout = ({ children }) => {
     <div className="dashboard-layout">
       <SideBar userInfo={userInfo} />
       <div className="dashboard-main">
-        <Header />
+        <Header currentUser={userInfo} />
         <div className="content">{children}</div>
 
         <Footer />

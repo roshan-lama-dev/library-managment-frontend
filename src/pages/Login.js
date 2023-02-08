@@ -44,6 +44,8 @@ const Login = () => {
 
       sessionStorage.setItem("user", JSON.stringify(result));
       navigate("/books");
+    } else {
+      toast[status](message);
     }
   };
   return (
