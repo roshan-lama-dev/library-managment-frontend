@@ -25,6 +25,10 @@ export const AddBooks = () => {
     e.preventDefault();
     console.log(addBookDetails);
     const { status, message } = await addBookFrontend(addBookDetails);
+
+    if (status === "success") {
+      setAddBookDetails(initalValue);
+    }
     toast[status](message);
   };
 
@@ -54,6 +58,7 @@ export const AddBooks = () => {
                   required
                   type="text"
                   name="title"
+                  value={addBookDetails.title}
                 />
               </Form.Group>
 
@@ -64,6 +69,7 @@ export const AddBooks = () => {
                   placeholder="Book Author"
                   required
                   type="text"
+                  value={addBookDetails.author}
                   name="author"
                 />
               </Form.Group>
@@ -74,6 +80,7 @@ export const AddBooks = () => {
                   onChange={handleOnChange}
                   required
                   type="text"
+                  value={addBookDetails.isbn}
                   name="isbn"
                 />
               </Form.Group>
@@ -83,6 +90,7 @@ export const AddBooks = () => {
                   placeholder="Year"
                   onChange={handleOnChange}
                   required
+                  value={addBookDetails.year}
                   type="text"
                   name="year"
                 />
@@ -93,6 +101,7 @@ export const AddBooks = () => {
                   onChange={handleOnChange}
                   placeholder="Book Image URL"
                   type="text"
+                  value={addBookDetails.thumbnail}
                   name="thumbnail"
                 />
               </Form.Group>
