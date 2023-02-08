@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import { DashBoardLayout } from "../component/customLayout/DashBoardLayout";
-
+import { addBookFrontend } from "../helpers/axiosHelper";
+import { toast } from "react-toastify";
 const initalValue = {
   author: "",
   isbn: "",
@@ -20,10 +21,13 @@ export const AddBooks = () => {
     });
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(addBookDetails);
+    const { status, message } = await addBookFrontend(addBookDetails);
+    toast[status](message);
   };
+
   return (
     <DashBoardLayout>
       <div className="add">
