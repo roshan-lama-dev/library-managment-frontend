@@ -29,6 +29,7 @@ export const Register = () => {
     {
       label: "Email",
       placeholder: "John@gmail.com",
+
       type: "email",
       required: "true",
       name: "email",
@@ -41,11 +42,12 @@ export const Register = () => {
       name: "password",
     },
     {
-      label: "Role",
-      placeholder: "Select your role",
-      type: "text",
+      label: "Confrim Password",
+      placeholder: "*******",
+
+      type: "password",
       required: "true",
-      name: "role",
+      name: "confirmPassword",
     },
   ];
 
@@ -61,6 +63,9 @@ export const Register = () => {
   const handleOnRegister = async (e) => {
     e.preventDefault();
 
+    if (registerDetails.password !== registerDetails.confirmPassword) {
+      return toast.error("Please confirm your password");
+    }
     const { status, message } = await registerUser(registerDetails);
     if (status === "success") {
       toast[status](message);
@@ -94,8 +99,19 @@ export const Register = () => {
                 {registerfield.map((item, i) => (
                   <CustomInput {...item} key={i} onChange={handleOnChange} />
                 ))}
+                <label for="pet-select">Choose a Role:</label>
+                <Form.Select
+                  onChange={handleOnChange}
+                  id="pet-select"
+                  required
+                  name="role"
+                >
+                  <option value="">...</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </Form.Select>
 
-                <div className="d-grid">
+                <div className="d-grid mt-3">
                   <Button type="submit">Register</Button>
                 </div>
                 <div className="mt-3">

@@ -43,6 +43,7 @@ const Login = () => {
       toast[status](message);
 
       sessionStorage.setItem("user", JSON.stringify(result));
+      navigate("/books");
     }
   };
   return (
