@@ -65,9 +65,28 @@ export const addBookFrontend = async (bookObj) => {
   }
 };
 
-export const getBooksFrom = async (bookIsbn) => {
+export const getBooksFrom = async () => {
   try {
-    const { data } = await axios.post(baseUrl + bookUrl, bookIsbn);
+    const userId = getUserId();
+
+    if (!userId) {
+      return {
+        status: "error",
+        message: "Please log in first",
+      };
+    }
+    console.log(userId);
+    const { data } = await axios.get(baseUrl + bookUrl, {
+      headers: {
+        Authorization: userId,
+      },
+    });
+
     return data;
-  } catch (error) {}
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
 };
