@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Form } from "react-bootstrap";
+import { Button, Col, Form, Spinner } from "react-bootstrap";
 import { DashBoardLayout } from "../component/customLayout/DashBoardLayout";
 import { addBookFrontend } from "../helpers/axiosHelper";
 import { toast } from "react-toastify";
@@ -23,13 +23,15 @@ export const AddBooks = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     console.log(addBookDetails);
     const { status, message } = await addBookFrontend(addBookDetails);
 
-    if (status === "success") {
+    if (status) {
+      setIsLoading(false);
       setAddBookDetails(initalValue);
+      return toast[status](message);
     }
-    toast[status](message);
   };
 
   return (
@@ -106,7 +108,12 @@ export const AddBooks = () => {
                 />
               </Form.Group>
 
-              <Button type="submit">Add Books</Button>
+              <Button type="submit">
+                Add Books{" "}
+                <span>
+                  {isLoading && <Spinner animation="border" variant="datk" />}
+                </span>
+              </Button>
             </Form>
           </Col>
         </div>

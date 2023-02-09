@@ -17,6 +17,15 @@ export const registerUser = async (userObj) => {
   }
 };
 
+export const getUserId = () => {
+  const userObj = JSON.parse(sessionStorage.getItem("user"));
+  if (userObj) {
+    return userObj?._id;
+  } else {
+    return;
+  }
+};
+
 export const loginUser = async (useObj) => {
   try {
     const { data } = await axios.post(baseUrl + userUrl + "/login", useObj);
@@ -33,7 +42,20 @@ export const loginUser = async (useObj) => {
 
 export const addBookFrontend = async (bookObj) => {
   try {
-    const { data } = await axios.post(baseUrl + bookUrl + "addbook", bookObj);
+    const userId = getUserId();
+
+    if (!userId) {
+      return {
+        status: "error",
+        message: "Please log in first",
+      };
+    }
+    console.log(userId);
+    const { data } = await axios.post(baseUrl + bookUrl + "/addbook", bookObj, {
+      headers: {
+        Authorization: userId,
+      },
+    });
     return data;
   } catch (error) {
     return {
