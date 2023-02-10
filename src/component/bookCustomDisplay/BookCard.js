@@ -2,6 +2,9 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 
 export const BookCard = ({ book }) => {
+  const handleBorrow = () => {};
+
+  const handleDeleteBooks = () => {};
   console.log(book);
   return (
     <div>
@@ -13,8 +16,22 @@ export const BookCard = ({ book }) => {
         <Card.Body className="text-center">
           <Card.Title>{book.title}</Card.Title>
           <div className="d-flex gap-2 justify-content-center">
-            <Button variant="info">Borrow</Button>
-            <Button variant="danger">Delete</Button>
+            <Button
+              variant="info"
+              onClick={() => {
+                handleBorrow();
+              }}
+            >
+              Borrow
+            </Button>
+            <Button
+              onClick={() => {
+                handleDeleteBooks();
+              }}
+              variant="danger"
+            >
+              Delete
+            </Button>
           </div>
         </Card.Body>
       </Card>
