@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Register } from "./pages/Register";
 import { Books } from "./pages/Books";
 import { AddBooks } from "./pages/AddBooks";
+import { MyBooks } from "./pages/MyBooks";
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/books" element={<Books />} />
           <Route path="/addbooks" element={<AddBooks />} />
+          <Route path="/mybooks" element={<MyBooks />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

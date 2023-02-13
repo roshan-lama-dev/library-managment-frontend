@@ -20,7 +20,7 @@ export const Books = () => {
     <DashBoardLayout>
       <Container>
         <Row className="p-5">
-          <BookList books={books} />
+          <BookList fetchAllBooks={fetchAllBooks} books={books} />
         </Row>
       </Container>
       s

@@ -23,7 +23,7 @@ export const SideBar = ({ userInfo }) => {
           </li>
 
           <li>
-            <Link to="/" className="link">
+            <Link to="/mybooks" className="link">
               <i className="fa-solid fa-book-open-reader"></i>
               <span>My Books</span>
             </Link>

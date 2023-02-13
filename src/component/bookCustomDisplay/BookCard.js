@@ -1,10 +1,30 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { borrowBooks, deltebooks } from "../../helpers/axiosHelper";
 
-export const BookCard = ({ book }) => {
-  const handleBorrow = () => {};
+export const BookCard = ({ book, fetchAllBooks }) => {
+  const handleBorrow = async (bookId) => {
+    console.log(bookId);
 
-  const handleDeleteBooks = () => {};
+    if (bookId) {
+      const { status, message } = await borrowBooks(bookId);
+      status === "success" ? toast.success(message) : toast.warning(message);
+    }
+  };
+
+  const handleDeleteBooks = async (bookId) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this book from the system?"
+      )
+    ) {
+      if (bookId) {
+        const { status, message } = await deltebooks(bookId);
+        toast[status](message) && fetchAllBooks();
+      }
+    }
+  };
   console.log(book);
   return (
     <div>
@@ -19,14 +39,14 @@ export const BookCard = ({ book }) => {
             <Button
               variant="info"
               onClick={() => {
-                handleBorrow();
+                handleBorrow(book._id);
               }}
             >
               Borrow
             </Button>
             <Button
               onClick={() => {
-                handleDeleteBooks();
+                handleDeleteBooks(book._id);
               }}
               variant="danger"
             >

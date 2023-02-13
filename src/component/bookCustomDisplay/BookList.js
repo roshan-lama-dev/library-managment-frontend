@@ -1,12 +1,14 @@
 import React from "react";
 import { BookCard } from "./BookCard";
 
-export const BookList = ({ books }) => {
+export const BookList = ({ books, fetchAllBooks }) => {
   console.log(books);
   return (
     <div className="d-flex flex-wrap justify-content-center gap-4">
       {books.map((item, index) => {
-        return <BookCard key={index} book={item} />;
+        return (
+          <BookCard key={index} book={item} fetchAllBooks={fetchAllBooks} />
+        );
       })}
     </div>
   );
