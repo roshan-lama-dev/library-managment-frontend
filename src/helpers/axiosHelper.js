@@ -172,3 +172,27 @@ export const getBorrowedBooks = async () => {
     };
   }
 };
+
+export const returnBorrowedBooks = async (bookId) => {
+  try {
+    const userId = getUserId();
+
+    if (!userId) {
+      return {
+        status: "error",
+        message: "Please Login first",
+      };
+    }
+    const { data } = await axios.patch(
+      bookEp + "/returnBooks",
+      { bookId },
+      { headers: { Authorization: userId } }
+    );
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error,
+    };
+  }
+};

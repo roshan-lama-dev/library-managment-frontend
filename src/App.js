@@ -8,6 +8,7 @@ import { Register } from "./pages/Register";
 import { Books } from "./pages/Books";
 import { AddBooks } from "./pages/AddBooks";
 import { MyBooks } from "./pages/MyBooks";
+import Transaction from "./pages/Transaction";
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
           <Route path="/books" element={<Books />} />
           <Route path="/addbooks" element={<AddBooks />} />
           <Route path="/mybooks" element={<MyBooks />} />
+          <Route path="/transaction" element={<Transaction />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

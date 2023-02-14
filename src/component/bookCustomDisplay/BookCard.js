@@ -13,6 +13,10 @@ export const BookCard = ({ book, fetchAllBooks }) => {
     }
   };
 
+  // const getUserFromStorage = () => {
+  //   const userObj = JSON.parse(sessionStorage.getItem("user"));
+  //   return userObj;
+  // };
   const handleDeleteBooks = async (bookId) => {
     if (
       window.confirm(
@@ -36,6 +40,7 @@ export const BookCard = ({ book, fetchAllBooks }) => {
         <Card.Body className="text-center">
           <Card.Title>{book.title}</Card.Title>
           <div className="d-flex gap-2 justify-content-center">
+            {/* {const userObj =getUserFromStorage()} */}
             <Button
               variant="info"
               onClick={() => {

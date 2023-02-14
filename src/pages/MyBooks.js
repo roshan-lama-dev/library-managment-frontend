@@ -1,16 +1,38 @@
-import React from "react";
-import { Container, Row, Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Row, Table } from "react-bootstrap";
+import { toast } from "react-toastify";
 import { DashBoardLayout } from "../component/customLayout/DashBoardLayout";
+import { getBorrowedBooks, returnBorrowedBooks } from "../helpers/axiosHelper";
 
 export const MyBooks = () => {
-  const fetchMybooks = () => {};
+  const [books, setborrowedBooks] = useState([]);
+  const fetchBorrowedBooks = async () => {
+    const response = await getBorrowedBooks();
+    setborrowedBooks(response);
+  };
+
+  useEffect(() => {
+    fetchBorrowedBooks();
+  }, []);
+
+  // console.log(books);
+  const handleOnClick = async (bookId) => {
+    if (window.confirm("Do you want to return this book")) {
+      const { status, message } = await returnBorrowedBooks(bookId);
+
+      toast[status](message);
+      fetchBorrowedBooks();
+    } else {
+      return;
+    }
+  };
   return (
     <DashBoardLayout>
       <Container>
         <Row className="p-5">
           <Table striped border hover>
             <thead>
-              <tr>
+              <tr className="text-center">
                 <th>#</th>
                 <th>Book</th>
                 <th>Title</th>
@@ -18,7 +40,30 @@ export const MyBooks = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {books?.map((item, index) => (
+                <tr key={item?._id} className="text-center">
+                  <td>{index + 1}</td>
+                  <td style={{ width: "19%" }}>
+                    <img
+                      src={item?.thumbnail}
+                      alt="bookImage"
+                      width={"100%"}
+                    ></img>
+                  </td>
+                  <td>{item?.title}</td>
+                  <td>{item?.author}</td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleOnClick(item?._id)}
+                    >
+                      Return
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </Table>
         </Row>
       </Container>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const SideBar = ({ userInfo }) => {
-  console.log(userInfo.role);
+  // console.log(userInfo.role);
   return (
     <div className="sidebar bg-primary">
       <div className="top">

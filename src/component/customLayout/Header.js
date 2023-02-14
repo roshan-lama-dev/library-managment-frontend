@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
 export const Header = ({ currentUser }) => {
-  console.log(currentUser);
+  // console.log(currentUser);
   const handleLogout = () => {
     sessionStorage.removeItem("user");
   };
