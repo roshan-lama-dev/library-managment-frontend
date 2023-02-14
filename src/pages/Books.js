@@ -23,7 +23,6 @@ export const Books = () => {
           <BookList fetchAllBooks={fetchAllBooks} books={books} />
         </Row>
       </Container>
-      s
     </DashBoardLayout>
   );
 };

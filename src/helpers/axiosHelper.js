@@ -196,3 +196,27 @@ export const returnBorrowedBooks = async (bookId) => {
     };
   }
 };
+
+// get the transaction
+export const getTransaction = async () => {
+  try {
+    const userId = getUserId();
+    if (!userId) {
+      return {
+        status: "error",
+        message: "Please login to the system",
+      };
+    }
+    const { data } = await axios.get(baseUrl + "transaction", {
+      headers: {
+        Authorization: userId,
+      },
+    });
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

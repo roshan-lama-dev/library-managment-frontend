@@ -10,12 +10,12 @@ export const DashBoardLayout = ({ children }) => {
     // need to get the user information because we need it to determine what to show on the sidebar
     // inorder to achieve this we first need to get the session storage and then save it in a usesatate and props it to the sidebar element
     const user = JSON.parse(sessionStorage.getItem("user"));
-    // console.log(user);
+
     if (user) {
       setUserInfo(user);
     }
   }, []);
-
+  console.log(userInfo);
   return (
     <div className="dashboard-layout">
       <SideBar userInfo={userInfo} />

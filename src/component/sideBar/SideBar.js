@@ -38,7 +38,7 @@ export const SideBar = ({ userInfo }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/" className="link">
+                <Link to="/transaction" className="link">
                   <i className="fa-solid fa-left-right"></i>
                   <span>Transaction</span>
                 </Link>

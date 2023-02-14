@@ -13,7 +13,7 @@ export const MyBooks = () => {
 
   useEffect(() => {
     fetchBorrowedBooks();
-  }, []);
+  }, [books]);
 
   // console.log(books);
   const handleOnClick = async (bookId) => {
@@ -21,7 +21,8 @@ export const MyBooks = () => {
       const { status, message } = await returnBorrowedBooks(bookId);
 
       toast[status](message);
-      fetchBorrowedBooks();
+      // fetchBorrowedBooks();
+      // we can use the conditinal rendering using the books array
     } else {
       return;
     }
