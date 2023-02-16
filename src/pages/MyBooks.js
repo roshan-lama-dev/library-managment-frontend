@@ -13,7 +13,7 @@ export const MyBooks = () => {
 
   useEffect(() => {
     fetchBorrowedBooks();
-  }, [books]);
+  }, []);
 
   // console.log(books);
   const handleOnClick = async (bookId) => {
